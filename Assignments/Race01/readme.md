@@ -10,7 +10,8 @@ Q2)
 Q3)
 <img width="275" alt="image" src="https://github.com/ukkashah11/PF-Fall-2023/assets/115150510/ef648807-66b7-4b74-8b58-ffcf5f28006d">
 Q4)
-<img width="270" alt="image" src="https://github.com/ukkashah11/PF-Fall-2023/assets/115150510/4167e944-b341-4515-8dbc-036756e750ec">
+![WhatsApp Image 2023-08-27 at 21 14 42](https://github.com/ukkashah11/PF-Fall-2023/assets/115150510/37536638-a2a1-4ee6-98ec-7af3dc19bf3a)
+
 Q5)
 <img width="269" alt="image" src="https://github.com/ukkashah11/PF-Fall-2023/assets/115150510/f3d1135e-b8a8-4cfb-8d6e-c2dc8f5610fa">
 
