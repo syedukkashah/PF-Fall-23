@@ -6,3 +6,7 @@ Q3(![image](https://github.com/ukkashah11/PF-Fall-2023/assets/115150510/5a04e1e0
 
 Q4)![image](https://github.com/ukkashah11/PF-Fall-2023/assets/115150510/8551b177-91ea-436d-b89c-180d10f09a1c)
 
+Q5)![image](https://github.com/ukkashah11/PF-Fall-2023/assets/115150510/1e2240eb-1ea6-4353-a8ca-fbedff22f926)
+
+
+
