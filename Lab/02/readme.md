@@ -8,5 +8,8 @@ Q4)![image](https://github.com/ukkashah11/PF-Fall-2023/assets/115150510/8551b177
 
 Q5)![image](https://github.com/ukkashah11/PF-Fall-2023/assets/115150510/1e2240eb-1ea6-4353-a8ca-fbedff22f926)
 
+Q6) ![image](https://github.com/ukkashah11/PF-Fall-2023/assets/115150510/f710a620-9218-47f3-9239-987fc5a04b69)
+
+Q7) ![image](https://github.com/ukkashah11/PF-Fall-2023/assets/115150510/9b5b7287-f225-479d-99cb-c7d22b3e895e)
 
 
