@@ -2,6 +2,9 @@ Syed Ukkashah Ahmed Shah
 23K-0055
 
 Q1) 
+
+
+
 <img width="371" alt="image" src="https://github.com/ukkashah11/PF-Fall-2023/assets/115150510/1f47d9a1-9a71-4a75-a492-3f2250dc751b">
 
 
