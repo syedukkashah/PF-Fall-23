@@ -21,8 +21,12 @@ Q5)
 ![Screenshot_20230831-095603_WhatsApp](https://github.com/ukkashah11/PF-Fall-2023/assets/115150510/bb65f32b-494d-4668-806c-7a5d657b8284)
 
 
+Q6) ![WhatsApp Image 2023-09-03 at 10 04 09](https://github.com/ukkashah11/PF-Fall-2023/assets/115150510/d8ceb0e7-5fba-41e2-a17a-e7c3d1f60eeb)
 
-Q6)
+
+
+
+Q7)
 ![WhatsApp Image 2023-09-03 at 18 15 21](https://github.com/ukkashah11/PF-Fall-2023/assets/115150510/a1c7f7f1-d64f-4be3-a052-189e8826c28b)
 
 ![WhatsApp Image 2023-09-03 at 18 15 21](https://github.com/ukkashah11/PF-Fall-2023/assets/115150510/705e4047-bc2e-4046-8497-e0256e3f4993)
