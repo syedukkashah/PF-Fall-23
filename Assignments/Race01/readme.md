@@ -21,10 +21,23 @@ Q2)
 
 
 Q3)
+
+
+
+
+
+
+
+
 <img width="275" alt="image" src="https://github.com/ukkashah11/PF-Fall-2023/assets/115150510/ef648807-66b7-4b74-8b58-ffcf5f28006d">
 
 
 Q4)
+
+
+
+
+
 ![WhatsApp Image 2023-08-28 at 22 00 33](https://github.com/ukkashah11/PF-Fall-2023/assets/115150510/77923ef8-bc65-4b41-bf8a-bfef5760ea42)
 
 
