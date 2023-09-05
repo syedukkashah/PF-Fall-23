@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <math.h>
 int main(){
-          int opposite, adjacent, hypotenuse; //declaration 
+          float opposite, adjacent, hypotenuse; //declaration 
           printf("Enter length of adjacent side: ");
-          scanf("%d", &adjacent);
+          scanf("%f", &adjacent);
           printf("Enter length of opposite side: ");
-          scanf("%d", &opposite);
+          scanf("%f", &opposite);
           hypotenuse = sqrt(pow(adjacent, 2) + pow(opposite, 2));
-          printf("Hypotenuse is %d units", hypotenuse);
+          printf("Hypotenuse is %f units", hypotenuse);
 }//end main
