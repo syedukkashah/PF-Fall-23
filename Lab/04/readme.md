@@ -20,8 +20,15 @@ Q2)
 
 
 
+
+
+
+
 ![WhatsApp Image 2023-09-18 at 21 59 52](https://github.com/ukkashah11/PF-Fall-2023/assets/115150510/9245c306-504e-4cd5-ad03-a476c8c65169)
 Q3)
+
+
+
 
 
 
@@ -42,6 +49,10 @@ Q4)
 
 ![WhatsApp Image 2023-09-18 at 22 01 07](https://github.com/ukkashah11/PF-Fall-2023/assets/115150510/82940756-58c3-4c7c-8940-145b6a75ca19)
 Q5)
+
+
+
+
 
 
 
