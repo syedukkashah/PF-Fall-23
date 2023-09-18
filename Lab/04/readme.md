@@ -11,6 +11,9 @@ Q1)
 
 
 ![WhatsApp Image 2023-09-18 at 21 59 13](https://github.com/ukkashah11/PF-Fall-2023/assets/115150510/6e51dc30-c1d7-4741-b8f4-1bcd24a2f498)
+
+
+
 Q2)
 
 
@@ -46,6 +49,8 @@ Q2)
 
 
 ![WhatsApp Image 2023-09-18 at 21 59 52](https://github.com/ukkashah11/PF-Fall-2023/assets/115150510/9245c306-504e-4cd5-ad03-a476c8c65169)
+
+
 Q3)
 
 
@@ -92,6 +97,8 @@ Q3)
 
 
 ![WhatsApp Image 2023-09-18 at 22 00 35](https://github.com/ukkashah11/PF-Fall-2023/assets/115150510/173d1e1a-5797-417a-b241-dcbe98464153)
+
+
 Q4)
 
 
@@ -148,6 +155,9 @@ Q4)
 
 
 ![WhatsApp Image 2023-09-18 at 22 01 07](https://github.com/ukkashah11/PF-Fall-2023/assets/115150510/82940756-58c3-4c7c-8940-145b6a75ca19)
+
+
+
 Q5)
 
 
@@ -201,6 +211,9 @@ Q5)
 
 
 ![WhatsApp Image 2023-09-18 at 22 02 44](https://github.com/ukkashah11/PF-Fall-2023/assets/115150510/35de9bb6-c01c-4111-8815-cd6c18b1403b)
+
+
+
 Q6)
 
 
