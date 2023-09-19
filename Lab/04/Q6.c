@@ -7,9 +7,6 @@ int main()
 	int n, rows = 1, columns;
         printf("Enter number of rows: ");
         scanf("%d", &n);
-        if(n%2 == 0){
-            n=n-1;
-          }
 	while (rows <= n) {
 		columns = n;
 
