@@ -1,16 +1,15 @@
 #include <stdio.h>
+
 int main() {
     int num; 
-    printf("Enter 8 bit binary number: ");
+    printf("Enter an 8 digit binary number: ");
     scanf("%d", &num);
-    if((num/1000)%10 == 1 && (num/1000000)%10 ==1 ){
-    	printf("bit 4 and bit 7 are ON\n");
-    	num = num - 1001000;
-    	printf("%d",num);
+    if((num/1000)%10==1 && (num/1000000)%10 == 1){
+    	printf("4th and 7th bits are ON. Turning them OFF...\n");
+    	num -= 1001000;
 	}
-	else{
-		printf("bit 4 and bit 7 are OFF");
-	}
+	printf("Modified number: %.8d", num);
+    return 0;
 }
 
 
