@@ -1,3 +1,8 @@
+/*
+Programmer: Syed Ukkashah
+Date: 12th Sept 2023
+Description: Loops practice (dividing without dividing operators)
+*/
 #include <stdio.h>
 int main()
 {
