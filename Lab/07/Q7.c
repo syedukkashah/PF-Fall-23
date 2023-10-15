@@ -1,3 +1,8 @@
+/*
+Programmer: Syed Ukkashah
+Date: 12th Oct 2023
+Description: Matrix multiplication using 2D arrays
+*/
 #include <stdio.h>
 void getMatrixElements(int matrix[][10], int row, int column) {
 
