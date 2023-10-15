@@ -1,3 +1,8 @@
+/*
+Programmer: Syed Ukkashah
+Date: 15th Oct 2023
+Description: Pattern printing using functions and loops
+*/
 #include <stdio.h>
 void hat();
 void face();
