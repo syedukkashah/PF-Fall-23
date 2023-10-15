@@ -1,3 +1,8 @@
+/*
+Programmer: Syed Ukkashah
+Date: 14th Oct 2023
+Description: Determining which sub array elements sum up to equal a given number S
+*/
 #include <stdio.h>
 int main(){
 int s = 25;
