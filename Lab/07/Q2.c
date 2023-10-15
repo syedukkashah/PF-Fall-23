@@ -1,6 +1,6 @@
 /*
 Programmer: Syed Ukkashah
-Date: 12th Sept 2023
+Date: 12th Oct 2023
 Description: Shifting Array elements
 */
 #include <stdio.h>
