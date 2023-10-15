@@ -1,3 +1,8 @@
+/*
+Programmer: Syed Ukkashah
+Date: 14th Oct 2023
+Description: Checking frequency of elements in an array
+*/
 #include <stdio.h>
 int main(){
 	int n;
