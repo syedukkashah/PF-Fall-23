@@ -2,7 +2,7 @@
 #include <stdlib.h>
 /*
 Programmer: Syed Ukkashah
-Date: 12th Sept 2023
+Date: 12th Oct 2023
 Description: Checking symmetry of array
 */
 
