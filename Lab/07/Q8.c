@@ -1,3 +1,8 @@
+/*
+Programmer: Syed Ukkashah
+Date: 14th Oct 2023
+Description: Sorting Array elements in ascending order
+*/
 #include <stdio.h>
 int main(){
 	int i,j,arr[100],num, temp,n;
