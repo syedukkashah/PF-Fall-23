@@ -1,3 +1,8 @@
+/*
+Programmer: Syed Ukkashah
+Date: 14th Oct 2023
+Description: individual bill, total bill of all branches, highest branch bill, and highest phone bill calculation using 2d arrays (row = branch, column = phones)
+*/
 #include <stdio.h>
 int main(){
 	int branches = 3;
