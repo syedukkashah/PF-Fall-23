@@ -1,3 +1,8 @@
+/*
+Programmer: Syed Ukkashah
+Date: 15th Oct 2023
+Description: Printing a matrix [n-2][n-2] that contains largest element of a grid[n][n] in every contiguous 3x3 matrix inside of the grid
+*/
 #include <stdio.h>
 int main(){
 int arr[4][4]={{9,9,8,1},{5,6,2,6},{8,2,6,4},{6,2,2,2}};
