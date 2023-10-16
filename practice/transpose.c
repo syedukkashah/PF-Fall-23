@@ -1,31 +1,38 @@
 #include <stdio.h>
-void trans(int x, int y,int arr1[x][y]){
-	int transpose [y][x];
-	for(int i=0; i<y; i++){
-		for(int j=0; j<x; j++){
-			transpose[i][j]=arr1[j][i];
+void transpose(int x, int y, int arr[x][y]){
+	int trans[y][x];
+	for(int i=0; i<x; i++){
+		for(int j=0; j<y; j++){
+			trans[j][i]=arr[i][j];
 		}
 	}
 	for(int i=0; i<y; i++){
 		for(int j=0; j<x; j++){
-			printf("|%d| ", transpose[i][j]);
+			printf("|%d| ", trans[i][j]);
 		}
 		printf("\n");
 	}
 }
 int main(){
-	int row1, col1, i,j;
-	printf("Enter rows of Matrix 1: ");
-	scanf("%d", &row1);
-	printf("Enter columns of Matrix 1: ");
-	scanf("%d", &col1);
-	int arr1[row1][col1];
-	for(int i=0; i<row1; i++){
-		for(int j=0; j<col1; j++){
-			printf("Enter Element at Row %d, Column %d", i+1, j+1);
-			scanf("%d", &arr1[i][j]);
+	int row, col;
+	printf("Enter rows of Matrix: ");
+	scanf("%d", &row);
+	printf("Enter columns of Matrix: ");
+	scanf("%d", &col);
+	int arr[row][col];
+	for(int i=0; i<row; i++){
+		for(int j=0; j<col; j++){
+			printf("enter element at row %d, column %d: ", i+1, j+1);
+			scanf("%d", &arr[i][j]);
 		}
 	}
-	trans(row1, col1, arr1);
-	
+	for(int i=0; i<row; i++){
+		for(int j=0; j<col; j++){
+			printf("|%d| ", arr[i][j]);
+		}
+		printf("\n");
+	}
+	printf("\nTranspose: \n");
+	transpose(row, col, arr);
 }
+
