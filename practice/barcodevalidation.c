@@ -10,7 +10,7 @@ for(int i=0; i<12; i++){
 	arr[i]=x;
 	code/=10;
 }
-for(int i=0; i<12; i++){
+for(int i=11; i>=0; i--){
 	if((i+1)%2==0){
 		even+=arr[i];
 	}
@@ -19,7 +19,7 @@ for(int i=0; i<12; i++){
 	}
 }
 total = (odd*2)+even;
-if(total%10 == 0 && arr[11]==0){
+if(total%10 == 0 && arr[0]==0){
 	printf("Check Digit = Last Digit\n");
 	printf("This Barcode is Valid");
 }
