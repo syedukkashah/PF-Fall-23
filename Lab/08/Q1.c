@@ -8,7 +8,7 @@ function, swapIntegers. The user inputs two integer values, and the program
 uses the function to swap them. It should perform the swap, and display the
 updated values.
 */
-void swapIntegers(int a, int b){
+void swapIntegers(int a, int b){  //function swaps integers by using a variable that stores a value temporarily, arguments of function include 2 integers
 	int temp = a;
 	a=b;
 	b=temp;
