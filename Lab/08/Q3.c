@@ -1,6 +1,13 @@
 #include <stdio.h>
 #include <string.h>
-
+/*
+Name: Syed Ukkashah
+Date: 10/24/23
+Decription: C program that reads a
+text input from the user and searches for a specific character (e.g., 'a')
+within the text using the strchr function. The total count of
+occurrences of the character in the input text is displayed.
+*/
 int main() {
     char text[100];  /* variable declarations and initializations */
     char searchChar;
