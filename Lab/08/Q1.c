@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-/*a C program that swaps the values of two integers using a user-defined
+/*
+Name: Syed Ukkashah
+Date: 10/24/23
+Decription: a C program that swaps the values of two integers using a user-defined
 function, swapIntegers. The user inputs two integer values, and the program
 uses the function to swap them. It should perform the swap, and display the
 updated values.
