@@ -1,6 +1,6 @@
 #include <stdio.h>
 //Programmer: Syed Ukkashah Ahmed Shah
-//Desc: Finding product of  nubers without using * operator using recursion
+//Desc: Finding GCD using recursive and iterative approach
 //Date: 10/31/2023
 int gcd(int a,int b) { //Function takes 2 integer arguments 
   int R;
