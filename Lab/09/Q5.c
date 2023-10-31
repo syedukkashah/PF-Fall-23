@@ -1,6 +1,6 @@
 #include <stdio.h>
 //Programmer: Syed Ukkashah Ahmed Shah
-//Desc: Finding product of  nubers without using * operator using recursion
+//Desc: Finding product of numbers without using * operator using recursion
 //Date: 10/31/2023
 int mul(int n, int x, int sum){ //function takes int 2 integers and the sum(always 0) as arguments
 	if(x>0){
