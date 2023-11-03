@@ -1,3 +1,6 @@
+//Programmer: Syed Ukkashah
+//Description: Using 2d arrays and recursion to traverse a maze from top left to bottom right
+//Date: 28th October 2023
 #include <stdio.h>
 #include<stdbool.h> //stdbool header file contains bool data types
 #define N 5
