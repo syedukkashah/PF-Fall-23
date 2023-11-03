@@ -1,5 +1,8 @@
+//Programmer: Syed Ukkashah
+//Description: Using 2d arrays to sort for max elements, etc.
+//Date: 28th October 2023
 #include <stdio.h>
-#include <string.h>
+#include <string.h> //string.h header file includes string functions
 int main(){
 	int time, price, day;
 	int flights[5][2];
@@ -13,7 +16,7 @@ int main(){
     flights[3][1] = 0;
     flights[4][0] = 375;
     flights[4][1] = 400;
-    printf("%9s %9s %9s %9s%9s\n","Day", "Morning", "Price", "Evening", "Price");
+    printf("%9s %9s %9s %9s%9s\n","Day", "Morning", "Price", "Evening", "Price"); // Displaying flights table
     
     for(int i=0; i<5; i++){
     	if(i==0){
@@ -52,7 +55,7 @@ int main(){
 	if(time<8 || time>19){
 		printf("No flights available during that time slot");
 	}
-	printf("\nEnter flight price (>=$300): ");
+	printf("\nEnter flight price (>=$300): "); // minimum budget must be $300
 	scanf("%d", &price);
 	if(price<300){
 		printf("No flights available for $%d", price);
@@ -134,7 +137,7 @@ int main(){
 	}
 	printf("\n If traveller is looking for morning slot flights: \n");
 	int j=0;
-	for(int i=0; i<5; i++){
+	for(int i=0; i<5; i++){ //loop prints all morning flights
 		switch(i){
 		 		    case 0:
 		 		    	if(flights[i][j]!=0){
@@ -167,8 +170,8 @@ int main(){
 	}
 		printf("\n If traveller is looking for evening slot flights: \n");
 	 j=1;
-	for(int i=0; i<5; i++){
-		switch(i){
+	for(int i=0; i<5; i++){ //loop prints all evening flights
+		switch(i){ 
 		 		    case 0:
 		 		    	if(flights[i][j]!=0){
 		 			    printf("An evening flight on Monday is available for $%d\n", flights[i][j]);
@@ -201,7 +204,7 @@ int main(){
 	printf("\nEnter the weekday (1-5) you would like to see available flights for: ");
 	scanf("%d", &day);
 	char days[10];
-	switch(day){
+	switch(day){ //switch cases initialize a char array to name of the day
 		case 1:
 			strcpy(days,"Monday");
 			break;
@@ -218,7 +221,7 @@ int main(){
 			strcpy(days, "Friday");
 			break;
 	}
-		if(flights[day-1][0]!=0){
+		if(flights[day-1][0]!=0){ 
 			printf("A morning flight is available for $%d on %s\n", flights[day-1][0], days);
 		}
 		if(flights[day-1][1]!=0){
