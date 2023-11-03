@@ -1,3 +1,6 @@
+//Programmer: Syed Ukkashah
+//Description: Using functions to calculate persistence of a number
+//Date: 28th October 2023
 #include<stdio.h>
 #include <stdlib.h>
 int persistence(int n){
@@ -22,5 +25,5 @@ int main(){
 	char input [100];
 	printf("Enter a number: ");
 	gets(input);
-	printf("Persistence of %s is %d", input, persistence(atoi(input)));
+	printf("Persistence of %s is %d", input, persistence(atoi(input))); //atoi function turns string input to an integer (used for the EOF condition to be met)
 }
