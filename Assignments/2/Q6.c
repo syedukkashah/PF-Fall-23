@@ -1,3 +1,6 @@
+//Programmer: Syed Ukkashah
+//Description: Using arrays to solve for pairs that sum to input number
+//Date: 28th October 2023
 #include<stdio.h>
 #include<math.h>
 int main(){
