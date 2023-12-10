@@ -1,108 +1,182 @@
 /*
- * Creator: Syed Ukkashah
- *    Date: 2/12/23
- *    Desc: Creates a 2D array for multiple departments. Assigns each department with employees with random names, roles and stats. Finds the best department according to stats
- */
+name:Syed Ukkashah
+ID:23K-0055
+Description:A program to create a database of employee records with performance
+            based ratings calculted randomly and calculating the best performing department
+date:9/12/23*/
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <string.h>
 
-typedef struct {
-	char name[20];
-	char role[10];
-	int communication;
-	int team_work;
-	int creativity;
-} Employee;
 
-char *depart_names[4] = {"HR", "Finance", "Marketing", "Logistics"};
-char *names[20] = {"Adam Feller", "Stella Hayes", "Syed ukkashah", "Ava Davidson", "Muhammad Abbas", "Fasih Hasan", "Noah Coleman", "Lily Morgan", "Lucas Griffin", "Harper Parker", "Jackson Hunter", "Grace Turner", "Aiden Sullivan", "Chloe Brooks", "Walter White", "Emily Foster", "Liam Wallace", "Sophia Carpenter", "Logan Harrison", "Isabella Harper"};
-char *roles[5] = {"Director", "Executive", "Manager", "Employee", "Trainee"};
+// Structure to represent an employee
+struct Employee {
+    char name[20];
+    char role[20];
+    int communication;
+    int teamwork;
+    int creativity;
+};
 
-Employee **create_departments()
-{
-	Employee **depart = (Employee **)malloc(sizeof(Employee *) * 4);
-	Employee *employees = (Employee *)malloc(sizeof(Employee) * 5*4);
+// Structure to represent a department
+struct Department {
+    char name[20];
+    struct Employee employees[5]; //an array of structures
+    //will hold summed values of all attributes
+    int totalCommunication;
+    int totalTeamwork;
+    int totalCreativity;
+};
 
-	for (int i = 0; i < 4; i++) depart[i] = &employees[i*5];
+// Function to generate a random name from a hardcoded pool of names in the main function
+char* generateRandomName(char pool[][20], int poolSize) {
+    return pool[rand() % poolSize/*division is done so that the number returned is within the index limit of the array*/];
+    //the returned number will be used as the index of the name pool array to get the name stored at that index 
+}
 
-	return depart;
-} // end create_departments()
+// -> is used as there are pointers to the structures
+// Function to initialize a department with employees and their attributes
+void initializeDepartment(struct Department *department, char name[], char rolePool[][20], int rolePoolSize, char namePool[][20], int namePoolSize) {
+    strcpy(department->name, name); //copies the department name to the department attribute in the employee struct
+    //initializing all numerical attributes to zero
+    department->totalCommunication = 0;
+    department->totalTeamwork = 0;
+    department->totalCreativity = 0;
 
-void print_employees(Employee *depart)
-{
-	printf("%7c%-12s|%9s%4c|%15s%-2c|%11s%-2c|%12s%-2c|\n", 
-		' ', "Name", "Role", ' ', "Communication", ' ', "Team Work", ' ', "Creativity", ' '
-	);
-	for (int i = 0, index; i < 5; i++) {
-		printf("%2c%-17s|%2c%-11s|%10d%-7c|%8d%-5c|%8d%-6c|\n",
-			' ', depart[i].name, ' ', depart[i].role, depart[i].communication, ' ', depart[i].team_work, ' ',depart[i].creativity, ' '
-		);
-	}
-} // end print_employees()
+    int i;
+    for (i = 0; i < 5; i++) {
+        // Generate a unique name for each employee
+        do {
+            strcpy(department->employees[i].name, generateRandomName(namePool, namePoolSize)/*storing a random generated name to name attribute in emplyee struct which is in department struct*/);
+        } while (strstr((const char*)/*typecasting done due to requirement of strstr function*/department->employees[i].name, "Assigned"));
+        //the above strstr function is checking for the "Assigned" substring with the name to ensure name hasnt already been alloted.
+        
+        
+        int roleIndex;
+        do {
+            roleIndex = rand() % rolePoolSize;
+        } while (strstr((const char *)department->employees, rolePool[roleIndex]));
+        
+        // Assign a role from the pool
+        strcpy(department->employees[i].role, rolePool[i]);
 
-int assign(Employee *depart)
-{
-	bool roles_check[5] = {true, true, true, true, true};
+        // Assign random values between 1 and 100 for communication, teamwork, and creativity
+        department->employees[i].communication = rand() % 100 + 1;
+        department->employees[i].teamwork = rand() % 100 + 1;
+        department->employees[i].creativity = rand() % 100 + 1;
 
-	for (int i = 0, index_n, index_r; i < 5; i++) {
-		do {
-			index_n = rand() % 20; 
-		} while (names[index_n] == NULL);
+        // Update the total values for the department
+        department->totalCommunication += department->employees[i].communication;
+        department->totalTeamwork += department->employees[i].teamwork;
+        department->totalCreativity += department->employees[i].creativity;
+    }
+}
 
-		do {
-			index_r = rand() % 5; 
-		} while (roles_check[index_r] == false);
+// Function to print the details of a department
+void printDepartmentDetails(struct Department *department) {
+    //used dashes and | to design a table like structure
+    //%s and %d are used to allot it numeric column space
+    printf("| %-10s | %-10s | %-12s | %-8s | %-8s | %-9s |\n", "Department", "Role", "Name", "Communication", "Teamwork", "Creativity");
+    printf("|------------|------------|--------------|---------------|----------|------------|\n");
 
-		strcpy(depart[i].role, roles[index_r]);
-		strcpy(depart[i].name, names[index_n]);
+    int i;
+    for (i = 0; i < 5; i++) {
+        printf("| %-10s | %-10s | %-12s | %-13d | %-8d | %-10d |\n",
+               //printing all the relevant data in the table
+               department->name,
+               department->employees[i].role,
+               department->employees[i].name,
+               department->employees[i].communication,
+               department->employees[i].teamwork,
+               department->employees[i].creativity);
+    }
 
-		depart[i].communication = rand() % 100 + 1;
-		depart[i].team_work = rand() % 100 + 1;
-		depart[i].creativity = rand() % 100 + 1;
+    printf("|------------|------------|--------------|---------------|----------|------------|\n");
+}
 
-		names[index_n] = NULL, roles_check[index_r] = false;
-	}
-	
-	return 0;
-} // end assign()
+int main() {
+    
+    printf("Syed Ukkashah\n23K-0055\n\n");
 
-int get_highest_stats_depart(Employee **departs)
-{
-	int max_stats = 1 << 31, total_stats = 0, highest_depart;
-	for (int i = 0; i < 4; i++) {
-		total_stats = 0;
-		for (int j = 0; j < 5; j++) {
-			total_stats += departs[i][j].communication + departs[i][j].team_work + departs[i][j].creativity;
-		}
 
-		if (total_stats > max_stats) max_stats = total_stats, highest_depart = i;
-	}
+    // Pool of names for random assignment
+    char namePool[][20] = { 
+"BenjaminS",
+"CatherineM",
+"AlexanderC",
+"SamanthaT",
+"NicholasH",
+"DanielleP",
+"JonathanR",
+"ElizabethD",
+"FrederickK",
+"GabrielleL",
+"ChristopherG",
+ "VictoriaJ",
+ "JeremiahB",
+ "StephanieQ",
+"NathanielV",
+"JenniferK",
+"ChristianM",
+"IsabellaZ",
+"SebastianY",
+"PenelopeX"
+};
 
-	return highest_depart;
-} // get_highest_stats_depart()
+    // Pool of roles
+    char rolePool[][20] = {"Director", "Executive", "Manager", "Employee", "Trainee"};
 
-int main()
-{
-	time_t t;
-	srand(t);
+    // calculating num of elements in the role pool 
+    int rolePoolSize = sizeof(rolePool) / sizeof(rolePool[0]);
+    int namePoolSize = sizeof(namePool) / sizeof(namePool[0]);
 
-	Employee **departs = create_departments();
+    // Initialize departments with unique names
+    struct Department departments[4];
+    char departmentNames[][20] = {"HR", "Finance", "Marketing", "Logistics"};
 
-	for (int i = 0; i < 4; i++) assign(departs[i]);
-	int k = get_highest_stats_depart(departs);	
+    int i;
+    for (i = 0; i < 4; i++) {
+        initializeDepartment(&departments[i], departmentNames[i], rolePool, rolePoolSize, namePool, namePoolSize);
+    }
 
-	for (int i = 0; i < 4; i++) {
-		if (i == k) continue;
-		printf("%20cEmployees of department: %s\n", ' ', depart_names[i]);
-		print_employees(departs[i]);
-		printf("\n");
-	}
+    // Print department details
+    for (i = 0; i < 4; i++) {
+        printf("Details for %s Department:\n", departments[i].name);
+        printDepartmentDetails(&departments[i]);//giving the address as the function is getting a pointer to this struct as a argument
+        printf("\n");
+    }
 
-	printf("%20cBest department award goes to: %s\n", ' ', depart_names[k]);
-	print_employees(departs[k]);
+    // Determine the Best Department
+    int bestDepartmentIndex = 0;
+    //calculating total value for the first department as the initializing value for this variable
+    int maxTotalValues = departments[0].totalCommunication + departments[0].totalTeamwork + departments[0].totalCreativity;
 
-	return 0;
-} // end main()
+    for (i = 1; i < 4; i++) {
+        //calculating total sum of all numerical attributes for all departments
+        int currentTotalValues = departments[i].totalCommunication + departments[i].totalTeamwork + departments[i].totalCreativity;
+
+        if (currentTotalValues > maxTotalValues) {
+            maxTotalValues = currentTotalValues;
+            bestDepartmentIndex = i;
+        }
+    }
+
+    // Print the Best Department and its details
+    printf("Best Department Award goes to: %s Department\n", departments[bestDepartmentIndex].name);
+    printf("Total Communication: %d\n", departments[bestDepartmentIndex].totalCommunication);
+    printf("Total Teamwork: %d\n", departments[bestDepartmentIndex].totalTeamwork);
+    printf("Total Creativity: %d\n", departments[bestDepartmentIndex].totalCreativity);
+
+    // Print the sum of values for each department separately
+    printf("\nSum of values for each department separately:\n");
+    for (i = 0; i < 4; i++) {
+        printf("%s Department - Communication: %d, Teamwork: %d, Creativity: %d\n",
+               departments[i].name,
+               departments[i].totalCommunication,
+               departments[i].totalTeamwork,
+               departments[i].totalCreativity); 
+    }
+
+    return 0;
+}
