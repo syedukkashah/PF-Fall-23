@@ -1,3 +1,4 @@
+//go through fscanf_read.c commit first
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -13,7 +14,7 @@ int main() {
         if (fgets(buffer, sizeof(buffer), f) != NULL) {
             int rows, cols;
             // Extracting dimensions from the buffer
-            if (sscanf(buffer, "%d,%d", &rows, &cols) != 2) {
+            if (sscanf(buffer, "%d,%d", &rows, &cols) != 2) { //sscanf returns the num of chars read (2 in this case). It reads from the buffer instead of reaading from the file directly like fscanf
                 printf("Error reading matrix dimensions");
                 return 1;
             }
