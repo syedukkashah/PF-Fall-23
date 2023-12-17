@@ -1,5 +1,4 @@
 /*
- * Creator:Syed Ukkashah
  * Desc: A game called connect 4. First player to create a sequence of 4 characters in a row in a 6 by 7 grid will win
  */
 
