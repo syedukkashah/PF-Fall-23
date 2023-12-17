@@ -1,3 +1,4 @@
+/* Description: Input.txt scanned for matrix dimensions, checked if product can be computed and product matrix written in output.txt file*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
