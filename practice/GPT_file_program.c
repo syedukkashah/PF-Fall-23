@@ -48,7 +48,7 @@ void DisplayWinner() {
         exit(1);
     }
     int successCount[MAX_GROUPS] = {0};
-    int maxSuccess = 0;s
+    int maxSuccess = 0;
     while (!feof(file)) {
         struct Group currentGroup;
         fscanf(file, "%d %s", &currentGroup.groupID, currentGroup.groupName);
