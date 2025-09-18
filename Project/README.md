@@ -8,7 +8,16 @@ Persistence: Saves game state to saves.csv and tracks wins in wins.txt.
 Interface: Displays a colored grid, start menu with rules, and win/draw screens.
 Code Structure: Modular, with connect4.h for declarations and connect4.c for implementation.
 
-DEMO
+
+Human vs Human mode demo:
+https://github.com/user-attachments/assets/ccc7f9ae-d0ce-4d67-9db7-8378ee08b3fd
+
+
+
+
+Human vs AI demo:
+https://github.com/user-attachments/assets/28d96af6-f5b5-4cdd-a414-0584bd05ae69
+
 
 The game uses safe input handling (fgets) and dynamic memory allocation for the grid. The AI, active in Human vs. AI mode, employs intelligent move selection.
 Algorithms Implemented
