@@ -1,5 +1,6 @@
 /*
  * Desc: A game called connect 4. First player to create a sequence of 4 characters in a row in a 6 by 7 grid will win
+ * Modified with AI functionality
  */
 
 #include <stdio.h>
@@ -25,18 +26,41 @@
 #define    white 15
 #define l_yellow 14
 
+// AI constants
+#define MAX_DEPTH 6
+#define WIN_SCORE 1000
+#define LOSE_SCORE -1000
+
 // default settings
 const int rows = 6, cols = 7;
 
 // input flag to handle input commands
 bool input_flag = true;
 
+// Game mode settings
+bool is_ai[2] = {false, false}; // Player 0 = Human, Player 1 = Human (default)
+int game_mode = 0; // 0 = Human vs Human, 1 = Human vs AI
+
 int main()
 {
 	int player, col;
 	bool valid = true, win = false;
 	char player_char, **grid = create_game_grid();
-    start_menu();
+    
+    // Show start menu and get game mode
+    game_mode = start_menu();
+    
+    // Set AI players based on game mode
+    switch(game_mode) {
+        case 1: // Human vs AI
+            is_ai[0] = false;
+            is_ai[1] = true;
+            break;
+        default: // Human vs Human
+            is_ai[0] = false;
+            is_ai[1] = false;
+            break;
+    }
 
 	// game loop
 	while (!win) {
@@ -50,14 +74,33 @@ int main()
 
 		// for each player
 		for (player = 0; player < 2; player++) {
-			// loop until valid input
-			do {
+			if (is_ai[player]) {
+				// AI move
 				update_frame(grid);
-				if (!valid && !input_flag) printf("-- Enter appropriate column number or command --\n\n");
-				input_flag = false;
-				col = user_input(grid, &player);
-				valid = validate_move(grid, col);
-			} while (!valid);
+				printf("AI Player %d is thinking...\n", player + 1);
+				Sleep(1000); // Give user time to see AI's choice
+				
+				col = get_ai_move(grid, player);
+				printf("AI Player %d chooses column %d\n", player + 1, col + 1);
+				Sleep(1500);
+				valid = true;
+			} else {
+				// Human move (existing logic)
+				do {
+					update_frame(grid);
+					if (!valid && !input_flag) printf("-- Enter appropriate column number or command --\n\n");
+					input_flag = false;
+					col = user_input(grid, &player);
+					if (col == -1) {
+						valid = true;
+						continue; // Skip to next iteration for commands
+					}
+					valid = validate_move(grid, col);
+				} while (!valid);
+			}
+
+			// Skip setting grid if it was a command
+			if (col == -1) continue;
 
 			// set to grid
 			set_grid(grid, col, player);
@@ -79,7 +122,7 @@ int main()
 	return 0; // end
 } // end main()
 
-void start_menu() {
+int start_menu() {
     system("cls");
 
     // Print "WELCOME" with different colors for each character
@@ -120,6 +163,15 @@ void start_menu() {
     // Reset text color to light yellow
     set_color(15);
 
+    // Print game modes (only 2 modes now)
+    printf("%-12s%s\n", "", "GAME MODES:\n");
+    set_color(10); // Green
+    printf("%-12s%s\n", "", "1 - Human vs Human");
+    set_color(13); // Purple
+    printf("%-12s%s\n", "", "2 - Human vs AI");
+    set_color(15);
+    printf("\n");
+
     // Print controls with different colors
     printf("%-12s%s\n", "", "CONTROLS:\n");
     set_color(10); // Green for 'r'
@@ -159,26 +211,17 @@ void start_menu() {
     printf("5. The player who connects four discs in a row first wins the game!\n");
 
     set_color(15);  // Reset text color
-     printf("\n    Press any key to continue");
-
-    // Blinking effect
-    int blink = 1;
-    while (!_kbhit()) {
-        // Toggle visibility by moving the cursor to the beginning of the line
-        printf("\r");
-        if (blink) {
-            printf("    Press any key to continue");
-        } else {
-            printf("                              ");  // Print spaces to clear the line
-        }
-        blink = !blink;
-
-        // Wait for a short time to control the blinking speed
-        Sleep(500);
-    }
-    fflush(stdin);
-    // Clear the line after a key is pressed
-    printf("\r                              ");
+    
+    // Get game mode selection (now only 1-2)
+    int mode;
+    do {
+        printf("\nSelect game mode (1-2): ");
+        char input[10];
+        fgets(input, 10, stdin);
+        mode = atoi(input);
+    } while (mode < 1 || mode > 2);
+    
+    return mode - 1; // Convert to 0-based index
 }
 
 char **create_game_grid()
@@ -433,7 +476,11 @@ void game_end_display(char **grid, int player)
 	update_frame(grid);
 	set_color((player) ? 4 : 1);
 	printf("%13c", ' ');
-	printf("%s ", (player) ? "RED" : "BLUE");
+	if (is_ai[player]) {
+		printf("AI %s ", (player) ? "RED" : "BLUE");
+	} else {
+		printf("%s ", (player) ? "RED" : "BLUE");
+	}
 	set_color(l_yellow);
 	printf("WINS!\n");
 	display_wins(player);
@@ -555,3 +602,206 @@ void save_game(char **grid, int player)
 
 	fclose(fp);
 } // end save_game()
+
+// =================== AI FUNCTIONS ===================
+
+int get_ai_move(char **grid, int ai_player) {
+    // First priority: Try to win
+    int winning_move = find_winning_move(grid, ai_player);
+    if (winning_move != -1) return winning_move;
+    
+    // Second priority: Block opponent from winning
+    int blocking_move = find_winning_move(grid, 1 - ai_player);
+    if (blocking_move != -1) return blocking_move;
+    
+    // Third priority: Use minimax for optimal move
+    return get_best_move_minimax(grid, ai_player);
+}
+
+int find_winning_move(char **grid, int player) {
+    for (int col = 0; col < cols; col++) {
+        if (validate_move(grid, col)) {
+            // Simulate the move
+            set_grid(grid, col, player);
+            bool wins = game_win_status(grid, player);
+            
+            // Undo the move
+            int row = get_first_empty(grid, col) + 1;
+            if (row < rows) {
+                grid[row][col] = X;
+            }
+            
+            if (wins) return col;
+        }
+    }
+    return -1; // No winning move found
+}
+
+int get_best_move_minimax(char **grid, int ai_player) {
+    int best_col = 3; // Default to center column
+    int best_score = LOSE_SCORE - 1;
+    
+    for (int col = 0; col < cols; col++) {
+        if (validate_move(grid, col)) {
+            // Make the move
+            set_grid(grid, col, ai_player);
+            
+            // Evaluate this move
+            int score = minimax(grid, MAX_DEPTH - 1, false, ai_player, LOSE_SCORE, WIN_SCORE);
+            
+            // Undo the move
+            int row = get_first_empty(grid, col) + 1;
+            if (row < rows) {
+                grid[row][col] = X;
+            }
+            
+            if (score > best_score) {
+                best_score = score;
+                best_col = col;
+            }
+        }
+    }
+    return best_col;
+}
+
+int minimax(char **grid, int depth, bool maximizing, int ai_player, int alpha, int beta) {
+    // Terminal cases
+    if (game_win_status(grid, ai_player)) 
+        return WIN_SCORE + depth; // Prefer quicker wins
+    if (game_win_status(grid, 1 - ai_player)) 
+        return LOSE_SCORE - depth; // Prefer delaying losses
+    if (game_draw_status(grid) || depth == 0) 
+        return evaluate_position(grid, ai_player);
+    
+    if (maximizing) {
+        int max_eval = LOSE_SCORE - 1;
+        for (int col = 0; col < cols; col++) {
+            if (validate_move(grid, col)) {
+                // Make move
+                set_grid(grid, col, ai_player);
+                
+                // Recursive call
+                int eval = minimax(grid, depth - 1, false, ai_player, alpha, beta);
+                
+                // Undo move
+                int row = get_first_empty(grid, col) + 1;
+                if (row < rows) {
+                    grid[row][col] = X;
+                }
+                
+                max_eval = (eval > max_eval) ? eval : max_eval;
+                alpha = (alpha > eval) ? alpha : eval;
+                
+                // Alpha-beta pruning
+                if (beta <= alpha) break;
+            }
+        }
+        return max_eval;
+    } else {
+        int min_eval = WIN_SCORE + 1;
+        for (int col = 0; col < cols; col++) {
+            if (validate_move(grid, col)) {
+                // Make move
+                set_grid(grid, col, 1 - ai_player);
+                
+                // Recursive call
+                int eval = minimax(grid, depth - 1, true, ai_player, alpha, beta);
+                
+                // Undo move
+                int row = get_first_empty(grid, col) + 1;
+                if (row < rows) {
+                    grid[row][col] = X;
+                }
+                
+                min_eval = (eval < min_eval) ? eval : min_eval;
+                beta = (beta < eval) ? beta : eval;
+                
+                // Alpha-beta pruning
+                if (beta <= alpha) break;
+            }
+        }
+        return min_eval;
+    }
+}
+
+int evaluate_position(char **grid, int ai_player) {
+    int score = 0;
+    char ai_char = (ai_player == 0) ? P2 : P1; // Note: player 0 uses P2, player 1 uses P1
+    char opponent_char = (ai_player == 0) ? P1 : P2;
+    
+    // Center column preference (important in Connect 4)
+    for (int row = 0; row < rows; row++) {
+        if (grid[row][3] == ai_char) score += 3;
+        if (grid[row][3] == opponent_char) score -= 3;
+    }
+    
+    // Evaluate all possible 4-in-a-row windows
+    score += evaluate_windows(grid, ai_char, opponent_char);
+    
+    return score;
+}
+
+int evaluate_windows(char **grid, char ai_char, char opponent_char) {
+    int score = 0;
+    
+    // Check all possible 4-piece windows
+    // Horizontal
+    for (int row = 0; row < rows; row++) {
+        for (int col = 0; col <= cols - 4; col++) {
+            score += evaluate_window(grid, row, col, 0, 1, ai_char, opponent_char);
+        }
+    }
+    
+    // Vertical
+    for (int row = 0; row <= rows - 4; row++) {
+        for (int col = 0; col < cols; col++) {
+            score += evaluate_window(grid, row, col, 1, 0, ai_char, opponent_char);
+        }
+    }
+    
+    // Diagonal (positive slope)
+    for (int row = 0; row <= rows - 4; row++) {
+        for (int col = 0; col <= cols - 4; col++) {
+            score += evaluate_window(grid, row, col, 1, 1, ai_char, opponent_char);
+        }
+    }
+    
+    // Diagonal (negative slope)
+    for (int row = 3; row < rows; row++) {
+        for (int col = 0; col <= cols - 4; col++) {
+            score += evaluate_window(grid, row, col, -1, 1, ai_char, opponent_char);
+        }
+    }
+    
+    return score;
+}
+
+int evaluate_window(char **grid, int row, int col, int delta_row, int delta_col, char ai_char, char opponent_char) {
+    int ai_count = 0;
+    int opponent_count = 0;
+    int empty_count = 0;
+    
+    // Check 4 consecutive pieces
+    for (int i = 0; i < 4; i++) {
+        int current_row = row + i * delta_row;
+        int current_col = col + i * delta_col;
+        
+        if (grid[current_row][current_col] == ai_char) {
+            ai_count++;
+        } else if (grid[current_row][current_col] == opponent_char) {
+            opponent_count++;
+        } else {
+            empty_count++;
+        }
+    }
+    
+    // Score the window
+    if (ai_count == 4) return 100;
+    else if (ai_count == 3 && empty_count == 1) return 10;
+    else if (ai_count == 2 && empty_count == 2) return 2;
+    else if (opponent_count == 4) return -100;
+    else if (opponent_count == 3 && empty_count == 1) return -10;
+    else if (opponent_count == 2 && empty_count == 2) return -2;
+    
+    return 0;
+}
