@@ -10,8 +10,8 @@ Code Structure: Modular, with connect4.h for declarations and connect4.c for imp
 
 
 Human vs Human mode demo:
-https://github.com/user-attachments/assets/ccc7f9ae-d0ce-4d67-9db7-8378ee08b3fd
 
+https://github.com/user-attachments/assets/e52dfb29-8686-460b-b371-af6a33630c5b
 
 
 
