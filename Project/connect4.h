@@ -1,5 +1,11 @@
-//displays start menu
-void start_menu();
+#ifndef CONNECT4_H
+#define CONNECT4_H
+
+#include <stdbool.h>
+
+// Original function declarations
+//displays start menu and returns game mode
+int start_menu();
 
 // create a game grid
 char **create_game_grid();
@@ -58,3 +64,27 @@ int load_game(char **grid, int player);
 
 // shows the wins for each player
 void display_wins(int player);
+
+// AI function declarations
+// gets the best move for AI player
+int get_ai_move(char **grid, int ai_player);
+
+// finds a winning move for the specified player
+int find_winning_move(char **grid, int player);
+
+// gets the best move using minimax algorithm
+int get_best_move_minimax(char **grid, int ai_player);
+
+// minimax algorithm with alpha-beta pruning
+int minimax(char **grid, int depth, bool maximizing, int ai_player, int alpha, int beta);
+
+// evaluates the current board position
+int evaluate_position(char **grid, int ai_player);
+
+// evaluates all possible 4-piece windows
+int evaluate_windows(char **grid, char ai_char, char opponent_char);
+
+// evaluates a single 4-piece window
+int evaluate_window(char **grid, int row, int col, int delta_row, int delta_col, char ai_char, char opponent_char);
+
+#endif
