@@ -1,4 +1,4 @@
-# Connect 4 AI Implementation - Complete Analysis
+# AI-Powered Connect 4 - Complete Analysis
 
 ## Game Modes Overview
 
