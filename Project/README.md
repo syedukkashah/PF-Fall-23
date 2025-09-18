@@ -16,7 +16,13 @@ https://github.com/user-attachments/assets/e52dfb29-8686-460b-b371-af6a33630c5b
 
 
 Human vs AI demo:
-https://github.com/user-attachments/assets/28d96af6-f5b5-4cdd-a414-0584bd05ae69
+
+
+
+
+
+https://github.com/user-attachments/assets/95c04170-b75b-4f51-9ecf-7d1a700ffbba
+
 
 
 The game uses safe input handling (fgets) and dynamic memory allocation for the grid. The AI, active in Human vs. AI mode, employs intelligent move selection.
