@@ -1,4 +1,5 @@
 # AI-Powered Connect 4 Game 
+Supervised by Sir Farooq Zaidi
 # Project Overview
 This project implements a Connect 4 game in C, featuring a 6x7 grid where players ('R' for red, 'B' for blue) aim to connect four discs horizontally, vertically, or diagonally. It supports Human vs. Human and Human vs. AI modes, with a command-line interface using Windows API for colored output. Key features include:
 
